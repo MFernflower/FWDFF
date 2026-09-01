@@ -31,6 +31,7 @@ install: build
 	'' \
 	'[Service]' \
 	'Type=oneshot' \
+	'User=root' \
 	'ExecStart=/usr/bin/$(BIN_NAME)' \
 	'RemainAfterExit=yes' \
 	'Restart=on-failure' \
