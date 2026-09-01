@@ -7,30 +7,9 @@ A tool to fix a bug with Framework Desktops.
 This project provides a solution for addressing fan control issues on Framework Desktop systems.
 
 ## Building
+```
+curl https://sh.rustup.rs -sSf | sh
 
-This project uses a Makefile for building. Run:
-
-```bash
-make
+sudo make
 ```
 
-## Tech Stack
-
-- **Rust** - Core application logic
-- **Makefile** - Build system
-
-## Installation
-
-[Add installation instructions here]
-
-## Usage
-
-[Add usage instructions here]
-
-## Contributing
-
-Feel free to open issues or submit pull requests.
-
-## License
-
-[Specify your license]
