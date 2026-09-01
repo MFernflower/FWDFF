@@ -1,0 +1,11 @@
+[package]
+name = "FWDFF"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+framework_lib = "0.6.5"
+
+[[bin]]
+name = "FWDFF"
+path = "src/main.rs"
