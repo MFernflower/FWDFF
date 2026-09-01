@@ -11,26 +11,26 @@ LOG_FILE="/var/log/fwdff.log"
 echo "==> Building (release)..."
 cargo build --release
 
-# Locate the compiled binary
-BIN_PATH="$(ls target/release/"${BIN_NAME}" target/*/release/"${BIN_NAME}" 2>/dev/null | head -n1)"
-if [ -z "${BIN_PATH}" ]; then
-    echo "error: could not locate compiled '${BIN_NAME}' binary" >&2
+# 2. Locate the compiled binary (single binary -> deterministic path)
+BIN_PATH="target/release/${BIN_NAME}"
+if [ ! -x "${BIN_PATH}" ]; then
+    echo "error: could not find compiled '${BIN_NAME}' at ${BIN_PATH}" >&2
     exit 1
 fi
 echo "    found binary: ${BIN_PATH}"
 
-# 2. Install binary
+# 3. Install binary
 echo "==> Installing binary to ${DEST_BIN}..."
 sudo install -m 0755 -o root -g root "${BIN_PATH}" "${DEST_BIN}"
 
-# 3. Install cron job (runs once at boot as root)
+# 4. Install cron job (runs once at boot as root)
 echo "==> Installing cron job to ${CRON_FILE}..."
 sudo tee "${CRON_FILE}" > /dev/null <<EOF
 # FWDFF - Framework Desktop Fan Fix (runs once at boot as root)
 @reboot root /usr/bin/${BIN_NAME} >> ${LOG_FILE} 2>&1
 EOF
 
-# 4. Reload cron daemon
+# 5. Reload cron daemon
 echo "==> Reloading cron daemon..."
 systemctl restart cron 2>/dev/null || systemctl restart crond 2>/dev/null || true
 
