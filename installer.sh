@@ -29,13 +29,7 @@ sudo tee "${CRON_FILE}" > /dev/null <<EOF
 @reboot root /usr/bin/${BIN_NAME} >> ${LOG_FILE} 2>&1
 EOF
 
-# 5. Reload cron daemon
-echo "==> Reloading cron daemon..."
-systemctl restart cron 2>/dev/null || systemctl restart crond 2>/dev/null || true
-
-echo "==> Done."
+echo "==> Done! Please Reboot System!"
 echo "    binary: ${DEST_BIN}"
 echo "    cron:   ${CRON_FILE}"
 echo "    log:    ${LOG_FILE}"
-echo
-echo "Run 'sudo tail -f ${LOG_FILE}' after reboot to see output."
