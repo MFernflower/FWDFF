@@ -15,7 +15,7 @@ const RGBPAYLOAD: [RgbS; 8] = [
 
 fn main() -> Result<(), EcError> {
     let ec = CrosEc::new();
-    ec.rgbkbd_set_color(0, RGBPAYLOAD.to_vec())?; /// Write to RGB leds
-    ec.send_command(0x0024u16, 0, &50u32.to_le_bytes())?; /// set fan speed to 50%
+    ec.rgbkbd_set_color(0, RGBPAYLOAD.to_vec())?; // Write to RGB leds
+    ec.send_command(0x0024u16, 0, &50u32.to_le_bytes())?; // set fan speed to 50%
     Ok(())
 }
