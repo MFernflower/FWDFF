@@ -3,21 +3,19 @@ use framework_lib::chromium_ec::commands::RgbS;
 use framework_lib::chromium_ec::EcError;
 
 const RGBPAYLOAD: [RgbS; 8] = [
-    RgbS { r: 0x00, g: 0xFF, b: 0x80 },
-    RgbS { r: 0x00, g: 0xE5, b: 0xCC },
-    RgbS { r: 0x1F, g: 0xC5, b: 0xB5 },
-    RgbS { r: 0x00, g: 0xD4, b: 0xAA },
-    RgbS { r: 0x20, g: 0xB2, b: 0xAA },
-    RgbS { r: 0x00, g: 0xCE, b: 0xD1 },
-    RgbS { r: 0x00, g: 0xFF, b: 0x9F },
-    RgbS { r: 0x00, g: 0xFF, b: 0x80 },
+    RgbS { r: 0x39, g: 0xFF, b: 0x14 },
+    RgbS { r: 0x7F, g: 0xFF, b: 0x00 },
+    RgbS { r: 0xFF, g: 0xFF, b: 0x00 },
+    RgbS { r: 0x00, g: 0xFF, b: 0x00 },
+    RgbS { r: 0x00, g: 0xFF, b: 0x7F },
+    RgbS { r: 0x00, g: 0xFF, b: 0xAA },
+    RgbS { r: 0xFF, g: 0x10, b: 0xF0 },
+    RgbS { r: 0x9D, g: 0x00, b: 0xFF },
 ];
 
 fn main() -> Result<(), EcError> {
     let ec = CrosEc::new();
-    // Set fan rgb to the preset payload.
-    ec.rgbkbd_set_color(0, RGBPAYLOAD.to_vec())?;
-    // Set fan duty cycle to 50% (LE u32).
-    ec.send_command(0x0024u16, 0, &50u32.to_le_bytes())?;
+    ec.rgbkbd_set_color(0, RGBPAYLOAD.to_vec())?; /// Write to RGB leds
+    ec.send_command(0x0024u16, 0, &50u32.to_le_bytes())?; /// set fan speed to 50%
     Ok(())
 }
