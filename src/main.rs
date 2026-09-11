@@ -3,7 +3,7 @@ use framework_lib::chromium_ec::commands::RgbS;
 use framework_lib::chromium_ec::EcError;
 
 // Compile-time configuration variables
-const FAN_SPEED_PERCENT: u32 = 55; // Set fan speed percentage (0-100)
+const FAN_SPEED_PERCENT: u32 = 60; // Set fan speed percentage (0-100)
 const ENABLE_LED_WRITE: bool = false; // Set to true to enable LED write, false to disable
 
 const RGBPAYLOAD: [RgbS; 8] = [
@@ -20,7 +20,7 @@ const RGBPAYLOAD: [RgbS; 8] = [
 fn main() -> Result<(), EcError> {
     let ec = CrosEc::new();
     
-    // Write to RGB leds only if ENABLE_LED_WRITE is true
+    // Write to RGB led controller only if ENABLE_LED_WRITE is true
     if ENABLE_LED_WRITE {
         ec.rgbkbd_set_color(0, RGBPAYLOAD.to_vec())?;
     }
