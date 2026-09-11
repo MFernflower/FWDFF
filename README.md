@@ -4,7 +4,7 @@ Fixes a fan bug on Framework Desktop running Linux.
 
 ## What it does
 
-On Framework Desktop systems, the RGB fan controller and fan settings often get corrupted after reboot. This tool runs a cronjob that executes a small Rust program at startup to overwrite the corrupted settings with your configured values.
+On Framework Desktop systems, the fan controller's speed and color settings often get corrupted after reboot. This tool runs a cronjob that executes a small Rust program at startup to overwrite the corrupted settings with your compile-time configured values.
 
 The program directly writes to the Embedded Controller (EC) to:
 - Set fan speed to a configured percentage (default: 60%)
@@ -23,18 +23,7 @@ Edit `src/main.rs` to customize:
 
 ### Prerequisites
 
-Before building, install required development packages:
-
-```bash
-# Debian/Ubuntu
-sudo apt-get install libudev-dev build-essential
-
-# Fedora
-sudo dnf install systemd-devel gcc
-
-# Arch
-sudo pacman -S systemd base-devel
-```
+<h1>Before building, install the required system packages and ensure you have a functioning rust and cargo install!</h1>
 
 ### Build and Install
 
@@ -57,5 +46,3 @@ This will:
 
 - Linux
 - Framework Desktop
-- Rust toolchain (for building)
-- Development headers for libudev
