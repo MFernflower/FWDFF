@@ -32,17 +32,12 @@ Edit `src/main.rs` to customize:
 ```
 
 This will:
-1. Build the Rust binary (release mode)
+1. Build the Rust binary (in release mode)
 2. Install it to `/usr/bin/FWDFF`
-3. Set up a cronjob to run at boot
+3. Set up a cronjob to run /usr/bin/FWDFF at every boot
 
 ## Removal
 
 ```bash
 ./remove.sh
 ```
-
-## Requirements
-
-- Linux
-- Framework Desktop
