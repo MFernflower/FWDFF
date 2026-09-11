@@ -21,8 +21,6 @@ Edit `src/main.rs` to customize:
 
 ## Installation
 
-### Prerequisites
-
 <h1>Before building, install the required system packages and ensure you have a functioning rust and cargo install!</h1>
 
 ### Build and Install
