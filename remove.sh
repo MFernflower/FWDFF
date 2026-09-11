@@ -4,7 +4,6 @@ set -euo pipefail
 BIN_NAME="FWDFF"
 DEST_BIN="/usr/bin/${BIN_NAME}"
 CRON_FILE="/etc/cron.d/fwdff"
-LOG_FILE="/var/log/fwdff.log"
 
 # Safety: only root can uninstall system-wide installed files
 if [ "$(id -u)" -ne 0 ]; then
@@ -20,7 +19,7 @@ confirm() {
     esac
 }
 
-if ! confirm "Uninstall ${BIN_NAME} (remove binary, cron job, and log)?"; then
+if ! confirm "Uninstall ${BIN_NAME} (remove binary and cron job)?"; then
     echo "Aborted."
     exit 0
 fi
@@ -42,15 +41,7 @@ else
     echo "==> binary ${DEST_BIN} not present, skipping."
 fi
 
-# 3. Remove the log file
-if [ -e "${LOG_FILE}" ]; then
-    echo "==> Removing log file ${LOG_FILE}..."
-    sudo rm -f "${LOG_FILE}"
-else
-    echo "==> log file ${LOG_FILE} not present, skipping."
-fi
-
-# 4. Reload systemd's cron manager if present so removal takes effect immediately
+# 3. Reload systemd's cron manager if present so removal takes effect immediately
 if command -v systemctl >/dev/null 2>&1 && systemctl list-units --type=service >/dev/null 2>&1; then
     systemctl try-restart cron >/dev/null 2>&1 || systemctl try-restart crond >/dev/null 2>&1 || true
 fi

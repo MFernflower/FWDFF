@@ -4,7 +4,6 @@ set -euo pipefail
 BIN_NAME="FWDFF"
 DEST_BIN="/usr/bin/${BIN_NAME}"
 CRON_FILE="/etc/cron.d/fwdff"
-LOG_FILE="/var/log/fwdff.log"
 
 # 1. Build
 echo "==> Building (release)..."
@@ -26,10 +25,9 @@ sudo install -m 0755 -o root -g root "${BIN_PATH}" "${DEST_BIN}"
 echo "==> Installing cron job to ${CRON_FILE}..."
 sudo tee "${CRON_FILE}" > /dev/null <<EOF
 # FWDFF - Framework Desktop Fan Fix (runs once at boot as root)
-@reboot root /usr/bin/${BIN_NAME} >> ${LOG_FILE} 2>&1
+@reboot root /usr/bin/${BIN_NAME}
 EOF
 
 echo "==> Done! Please Reboot System!"
 echo "    binary: ${DEST_BIN}"
 echo "    cron:   ${CRON_FILE}"
-echo "    log:    ${LOG_FILE}"
