@@ -1,10 +1,8 @@
 # FWDFF - Framework Desktop Fan Fix
 
-Fixes a fan bug on Framework Desktop machines running Linux by restoring the Embedded Controller (EC) fan and RGB settings at boot.
-
 ## What it does
 
-On Framework Desktop systems, the fan controller's speed and RGB settings can become corrupted after reboot or after certain power events. This tool runs at startup and directly writes the expected values back to the EC to restore a stable configuration.
+On Framework Desktop systems, the fan controller's speed and RGB settings can become corrupted after reboot. This tool runs at startup and directly writes the expected values back to the EC to restore a stable configuration.
 
 The program currently does the following:
 
@@ -12,7 +10,7 @@ The program currently does the following:
 - Overwrites the RGB keyboard controller with a custom LED payload
 - Optionally rotates the RGB payload periodically by shifting each color slot over time
 
-This ensures your preferred fan and lighting behavior remains consistent even if the EC state is reset by the system.
+This ensures your preferred fan and lighting behavior remains consistent even if the EC state is abnormal.
 
 ## Features
 
