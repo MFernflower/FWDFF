@@ -7,7 +7,7 @@ CRON_FILE="/etc/cron.d/fwdff"
 
 # Safety: only root can uninstall system-wide installed files
 if [ "$(id -u)" -ne 0 ]; then
-    echo "error: this uninstaller must be run as root (try: sudo uninstaller.sh)" >&2
+    echo "error: this uninstaller must be run as root!" >&2
     exit 1
 fi
 
