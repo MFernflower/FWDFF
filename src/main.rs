@@ -7,8 +7,8 @@ use std::time::{Duration, Instant};
 // Compile-time configuration variables
 const FAN_SPEED_PERCENT: u32 = 55; // Set fan speed percentage (0-100)
 const ENABLE_LED_WRITE: bool = true; // Set to true to enable LED write, false to disable
-const ENABLE_RGB_ROTATION: bool = true; // Set to true to rotate the RGB payload periodically
-const RGB_ROTATION_MINUTES: u64 = 5; // Rotate the payload after this many minutes
+const ENABLE_RGB_SCRAMBLE: bool = true; // Set to true to scramble the RGB payload periodically
+const RGB_SCRAMBLE_MINUTES: u64 = 5; // Scramble the payload after this many minutes
 const RGBPAYLOAD: [RgbS; 8] = [
     RgbS { r: 0x39, g: 0xFF, b: 0x14 },
     RgbS { r: 0x7F, g: 0xFF, b: 0x00 },
@@ -21,12 +21,14 @@ const RGBPAYLOAD: [RgbS; 8] = [
 ];
 // END
 
-fn shift_rgb_payload(payload: &mut [RgbS; 8]) {
-    let first = payload[0];
-    for index in 0..payload.len() - 1 {
-        payload[index] = payload[index + 1];
+fn scramble_rgb_payload(payload: &mut [RgbS; 8]) {
+    // Simple XOR-based scrambling that produces deterministic but varied results
+    for i in 0..payload.len() {
+        let xor_value = (i as u8).wrapping_mul(0x5A);
+        payload[i].r ^= xor_value;
+        payload[i].g ^= xor_value;
+        payload[i].b ^= xor_value;
     }
-    payload[payload.len() - 1] = first;
 }
 
 fn main() -> Result<(), EcError> {
@@ -39,19 +41,19 @@ fn main() -> Result<(), EcError> {
         let mut payload = RGBPAYLOAD;
         ec.rgbkbd_set_color(0, payload.to_vec())?;
 
-        if ENABLE_RGB_ROTATION {
-            assert!(RGB_ROTATION_MINUTES > 0, "RGB_ROTATION_MINUTES must be greater than zero");
+        if ENABLE_RGB_SCRAMBLE {
+            assert!(RGB_SCRAMBLE_MINUTES > 0, "RGB_SCRAMBLE_MINUTES must be greater than zero");
 
-            let rotation_interval = Duration::from_secs(RGB_ROTATION_MINUTES * 60);
-            let mut next_rotation = Instant::now() + rotation_interval;
+            let scramble_interval = Duration::from_secs(RGB_SCRAMBLE_MINUTES * 60);
+            let mut next_scramble = Instant::now() + scramble_interval;
 
             loop {
                 let now = Instant::now();
 
-                if now >= next_rotation {
-                    shift_rgb_payload(&mut payload);
+                if now >= next_scramble {
+                    scramble_rgb_payload(&mut payload);
                     ec.rgbkbd_set_color(0, payload.to_vec())?;
-                    next_rotation += rotation_interval;
+                    next_scramble += scramble_interval;
                 }
 
                 thread::sleep(Duration::from_secs(1));
