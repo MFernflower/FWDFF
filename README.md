@@ -2,24 +2,13 @@
 
 ## What it does
 
-On Framework Desktop systems, the fan controller's speed and RGB settings can become corrupted after reboot. This tool runs at startup and directly writes the expected values back to the EC to restore a stable configuration.
+On Framework Desktop systems, the fan controller's speed and RGB settings can become corrupted after reboot. This tool runs at startup and directly writes configured at compilation values back to the EC to restore a stable configuration.
 
 The program currently does the following:
 
 - Sets the fan speed to a configured percentage
 - Overwrites the RGB keyboard controller with a custom LED payload
 - Optionally rotates the RGB payload periodically by shifting each color slot over time
-
-This ensures your preferred fan and lighting behavior remains consistent even if the EC state is abnormal.
-
-## Features
-
-- Fan speed control via `FAN_SPEED_PERCENT`
-- LED writes via `ENABLE_LED_WRITE`
-- Optional RGB rotation via `ENABLE_RGB_ROTATION`
-- Configurable rotation interval via `RGB_ROTATION_MINUTES`
-- Custom 8-zone RGB payload through `RGBPAYLOAD`
-- Shift-based color cycling, where each RGB entry is moved one slot forward in the array
 
 ## Configuration
 
