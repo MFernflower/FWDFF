@@ -4,12 +4,6 @@
 
 On Framework Desktop systems, the fan controller's speed and RGB settings can become corrupted after reboot. This tool runs at startup and directly writes configured at compilation values back to the EC to restore a stable configuration.
 
-The program currently does the following:
-
-- Sets the fan speed to a configured percentage
-- Overwrites the RGB keyboard controller with a custom LED payload
-- Optionally rotates the RGB payload periodically by shifting each color slot over time
-
 ## Configuration
 
 Edit `src/main.rs` to customize the behavior:
