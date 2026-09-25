@@ -12,7 +12,7 @@ The program currently does the following:
 
 ## Configuration
 
-Edit `src/main.rs` to customize the runtime behavior:
+Edit `src/main.rs` to customize the behavior:
 
 - `FAN_SPEED_PERCENT` - Target fan speed percentage from 0-100
 - `ENABLE_LED_WRITE` - Enables or disables LED writes entirely
