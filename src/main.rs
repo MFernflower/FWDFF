@@ -21,8 +21,12 @@ const RGBPAYLOAD: [RgbS; 8] = [
 ];
 // END
 
-fn rotate_rgb_payload(payload: &mut [RgbS; 8]) {
-    payload.rotate_left(1);
+fn shift_rgb_payload(payload: &mut [RgbS; 8]) {
+    let first = payload[0];
+    for index in 0..payload.len() - 1 {
+        payload[index] = payload[index + 1];
+    }
+    payload[payload.len() - 1] = first;
 }
 
 fn main() -> Result<(), EcError> {
@@ -45,7 +49,7 @@ fn main() -> Result<(), EcError> {
                 let now = Instant::now();
 
                 if now >= next_rotation {
-                    rotate_rgb_payload(&mut payload);
+                    shift_rgb_payload(&mut payload);
                     ec.rgbkbd_set_color(0, payload.to_vec())?;
                     next_rotation += rotation_interval;
                 }
