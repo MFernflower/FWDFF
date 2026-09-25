@@ -22,7 +22,6 @@ const RGBPAYLOAD: [RgbS; 8] = [
 // END
 
 fn scramble_rgb_payload(payload: &mut [RgbS; 8]) {
-    // Simple XOR-based scrambling method
     for i in 0..payload.len() {
         let xor_value = (i as u8).wrapping_mul(0x5A);
         payload[i].r ^= xor_value;
@@ -35,7 +34,7 @@ fn main() -> Result<(), EcError> {
     
     let ec = CrosEc::new(); 
     
-    ec.send_command(0x0024u16, 0, &FAN_SPEED_PERCENT.to_le_bytes())?;  // Set fan speed to configured percentage
+    ec.send_command(0x0024u16, 0, &FAN_SPEED_PERCENT.to_le_bytes())?;  
 
     if ENABLE_LED_WRITE {
         let mut payload = RGBPAYLOAD;
