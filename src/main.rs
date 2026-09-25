@@ -1,6 +1,7 @@
 use framework_lib::chromium_ec::{CrosEc, CrosEcDriver};
 use framework_lib::chromium_ec::commands::RgbS;
 use framework_lib::chromium_ec::EcError;
+use rand::Rng;
 use std::thread;
 use std::time::{Duration, Instant};
 
@@ -22,19 +23,23 @@ const RGBPAYLOAD: [RgbS; 8] = [
 // END
 
 fn scramble_rgb_payload(payload: &mut [RgbS; 8]) {
+    let mut rng = rand::thread_rng();
+
     for i in 0..payload.len() {
-        let xor_value = (i as u8).wrapping_mul(0x5A);
-        payload[i].r ^= xor_value;
-        payload[i].g ^= xor_value;
-        payload[i].b ^= xor_value;
+        let base = RGBPAYLOAD[i];
+        let offset = rng.gen_range(0..=45);
+        let subtract = rng.gen_range(0..=25);
+
+        payload[i].r = base.r.saturating_add(offset).saturating_sub(subtract);
+        payload[i].g = base.g.saturating_add(offset).saturating_sub(subtract);
+        payload[i].b = base.b.saturating_add(offset).saturating_sub(subtract);
     }
 }
 
 fn main() -> Result<(), EcError> {
-    
-    let ec = CrosEc::new(); 
-    
-    ec.send_command(0x0024u16, 0, &FAN_SPEED_PERCENT.to_le_bytes())?;  
+    let ec = CrosEc::new();
+
+    ec.send_command(0x0024u16, 0, &FAN_SPEED_PERCENT.to_le_bytes())?;
 
     if ENABLE_LED_WRITE {
         let mut payload = RGBPAYLOAD;
