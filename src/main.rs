@@ -8,7 +8,7 @@ use std::time::{Duration, Instant};
 const FAN_SPEED_PERCENT: u32 = 55; // Set fan speed percentage (0-100)
 const ENABLE_LED_WRITE: bool = true; // Set to true to enable LED write, false to disable
 const ENABLE_RGB_SCRAMBLE: bool = true; // Set to true to scramble the RGB payload periodically
-const RGB_SCRAMBLE_MINUTES: u64 = 5; // Scramble the payload after this many minutes
+const RGB_SCRAMBLE_MINUTES: u64 = 2; // Scramble the payload after this many minutes
 const RGBPAYLOAD: [RgbS; 8] = [
     RgbS { r: 0x39, g: 0xFF, b: 0x14 },
     RgbS { r: 0x7F, g: 0xFF, b: 0x00 },
