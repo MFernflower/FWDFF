@@ -2,7 +2,7 @@ use framework_lib::chromium_ec::{CrosEc, CrosEcDriver};
 use framework_lib::chromium_ec::commands::RgbS;
 use framework_lib::chromium_ec::EcError;
 use std::thread;
-use std::time::Duration;
+use std::time::{Duration, Instant};
 
 // Compile-time configuration variables
 const FAN_SPEED_PERCENT: u32 = 55; // Set fan speed percentage (0-100)
@@ -21,6 +21,10 @@ const RGBPAYLOAD: [RgbS; 8] = [
 ];
 // END
 
+fn rotate_rgb_payload(payload: &mut [RgbS; 8]) {
+    payload.rotate_left(1);
+}
+
 fn main() -> Result<(), EcError> {
     let ec = CrosEc::new();
 
@@ -32,15 +36,21 @@ fn main() -> Result<(), EcError> {
         ec.rgbkbd_set_color(0, payload.to_vec())?;
 
         if ENABLE_RGB_ROTATION {
-            // A zero-minute interval would create a busy loop, so reject it at
-            // compile time rather than silently using an invalid configuration.
             assert!(RGB_ROTATION_MINUTES > 0, "RGB_ROTATION_MINUTES must be greater than zero");
+
             let rotation_interval = Duration::from_secs(RGB_ROTATION_MINUTES * 60);
+            let mut next_rotation = Instant::now() + rotation_interval;
 
             loop {
-                thread::sleep(rotation_interval);
-                payload.rotate_left(1);
-                ec.rgbkbd_set_color(0, payload.to_vec())?;
+                let now = Instant::now();
+
+                if now >= next_rotation {
+                    rotate_rgb_payload(&mut payload);
+                    ec.rgbkbd_set_color(0, payload.to_vec())?;
+                    next_rotation += rotation_interval;
+                }
+
+                thread::sleep(Duration::from_secs(1));
             }
         }
     }
