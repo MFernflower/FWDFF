@@ -33,7 +33,7 @@ const RGBPAYLOAD: [RgbS; 8] = [
 ];
 ```
 
-Note: changing the scramble timing or enabling/disabling scrambling requires rebuilding the binary.
+Note: changing any variables necessitates rebuilding the binary.
 
 ## Installation
 
