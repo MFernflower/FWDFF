@@ -37,7 +37,7 @@ Note: changing any variables necessitates rebuilding the binary.
 
 ## Installation
 
-<h1>Before building, install the required system packages and ensure you have a functioning rust and cargo install!</h1>
+<h1>Before building, install the required system packages (e.g libudev-dev) and ensure you have a functioning rust and cargo install!</h1>
 
 ### Build and install
 
