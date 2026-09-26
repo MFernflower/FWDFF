@@ -25,14 +25,9 @@ const RGBPAYLOAD: [RgbS; 8] = [
 fn scramble_rgb_payload(payload: &mut [RgbS; 8]) {
     let mut rng = rand::thread_rng();
 
-    for i in 0..payload.len() {
-        let base = RGBPAYLOAD[i];
-        let offset = rng.gen_range(0..=45);
-        let subtract = rng.gen_range(0..=25);
-
-        payload[i].r = base.r.saturating_add(offset).saturating_sub(subtract);
-        payload[i].g = base.g.saturating_add(offset).saturating_sub(subtract);
-        payload[i].b = base.b.saturating_add(offset).saturating_sub(subtract);
+    for i in (1..payload.len()).rev() {
+        let j = rng.gen_range(0..=i);
+        payload.swap(i, j);
     }
 }
 
