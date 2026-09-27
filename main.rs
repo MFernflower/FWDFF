@@ -6,10 +6,10 @@ use std::thread;
 use std::time::{Duration, Instant};
 
 // Compile-time configuration variables
-const FAN_SPEED_PERCENT: u64 = 58; // Set fan speed percentage (0-100)
+const FAN_SPEED_PERCENT: u32 = 58; // Set fan speed percentage (0-100)
 const ENABLE_LED_WRITE: bool = true; // Set to true to enable LED write, false to disable
 const ENABLE_RGB_SCRAMBLE: bool = true; // Set to true to scramble the RGB payload periodically
-const RGB_SCRAMBLE_SEC: u64 = 15; // Scramble the payload after this many seconds
+const RGB_SCRAMBLE_SEC: u32 = 15; // Scramble the payload after this many seconds
 const RGBPAYLOAD: [RgbS; 8] = [
     RgbS { r: 0x39, g: 0xFF, b: 0x14 },
     RgbS { r: 0x7F, g: 0xFF, b: 0x00 },
