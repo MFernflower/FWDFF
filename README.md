@@ -2,19 +2,19 @@
 
 ## What it does
 
-On Framework Desktop systems running Linux, the fan controller's speed and RGB settings can become corrupted after reboot. This tool runs at startup and directly writes configured at compilation values back to the embedded controller to restore stable behavior.
+On Framework Desktop systems running Linux, the fan controller's speed and RGB settings can become corrupted after reboot. This tool runs at startup and directly writes configured at compilation value[...]
 
 ## Configuration
 
-Edit `src/main.rs` to customize the behavior:
+Edit `main.rs` to change:
 
-- `FAN_SPEED_PERCENT` - Target fan speed percentage from 0-100
-- `ENABLE_LED_WRITE` - Enables or disables LED writes entirely
-- `ENABLE_RGB_SCRAMBLE` - Enables periodic RGB payload scrambling
-- `RGB_SCRAMBLE_MINUTES` - How often the RGB payload is scrambled, in minutes
-- `RGBPAYLOAD` - Custom RGB values for each LED zone
+- `FAN_SPEED_PERCENT` - fan speed from 0-100
+- `ENABLE_LED_WRITE` - enable or disable LED writes
+- `ENABLE_RGB_SCRAMBLE` - enable or disable periodic RGB scrambling
+- `RGB_SCRAMBLE_SEC` - scramble interval in seconds
+- `RGBPAYLOAD` - custom RGB values for each LED
 
-Note: changing any variables necessitates rebuilding the binary.
+Any change requires rebuilding the binary.
 
 ## Installation
 
