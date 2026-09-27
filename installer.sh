@@ -6,7 +6,7 @@ DEST_BIN="/usr/bin/${BIN_NAME}"
 CRON_FILE="/etc/cron.d/fwdff"
 
 # 1. Build
-echo "==> Building (release)..."
+echo "==> Building main.rs"
 cargo build --release
 
 # 2. Locate the compiled binary (single binary -> deterministic path)
