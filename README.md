@@ -12,7 +12,7 @@ Edit `main.rs` to change:
 - `ENABLE_LED_WRITE` - enable or disable LED writes
 - `ENABLE_RGB_SCRAMBLE` - enable or disable periodic RGB scrambling
 - `RGB_SCRAMBLE_SEC` - scramble interval in seconds
-- `RGBPAYLOAD` - custom RGB values for each LED
+- `RGBPAYLOAD` - custom RGB values for the fan controller
 
 Note: Any change requires rebuilding the binary and reinstalling the utility!
 
