@@ -14,7 +14,7 @@ Edit `main.rs` to change:
 - `RGB_SCRAMBLE_SEC` - scramble interval in seconds
 - `RGBPAYLOAD` - custom RGB values for each LED
 
-Any change requires rebuilding the binary.
+Note: Any change requires rebuilding the binary and reinstalling the utility!
 
 ## Installation
 
@@ -37,9 +37,3 @@ This will:
 ```bash
 ./remove.sh
 ```
-
-## Notes
-
-- The program writes directly to the EC and should be used with care.
-- The RGB scramble is implemented as a deterministic pseudo-randomized transformation of the payload array, so the color pattern shifts in a more dynamic, varied way over time.
-- If you do not want periodic RGB motion, set `ENABLE_RGB_SCRAMBLE` to `false`.
