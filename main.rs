@@ -6,19 +6,19 @@ use std::thread;
 use std::time::{Duration, Instant};
 
 // Compile-time configuration variables
-const FAN_SPEED_PERCENT: u32 = 60; // Set fan speed percentage (0-100)
+const FAN_SPEED_PERCENT: u32 = 40; // Set fan speed percentage (0-100)
 const ENABLE_LED_WRITE: bool = true; // Set to true to enable LED write, false to disable
-const ENABLE_RGB_SCRAMBLE: bool = true; // Set to true to scramble the RGB payload periodically
+const ENABLE_RGB_SCRAMBLE: bool = false; // Set to true to scramble the RGB payload periodically
 const RGB_SCRAMBLE_SEC: u64 = 10; // Scramble the payload after this many seconds
 const RGBPAYLOAD: [RgbS; 8] = [
-    RgbS { r: 0x39, g: 0xFF, b: 0x14 },
-    RgbS { r: 0x7F, g: 0xFF, b: 0x00 },
-    RgbS { r: 0xFF, g: 0xFF, b: 0x00 },
+    RgbS { r: 0x00, g: 0x10, b: 0x00 },
+    RgbS { r: 0x00, g: 0x2A, b: 0x00 },
+    RgbS { r: 0x00, g: 0x50, b: 0x00 },
+    RgbS { r: 0x00, g: 0x78, b: 0x00 },
+    RgbS { r: 0x00, g: 0x99, b: 0x00 },
+    RgbS { r: 0x00, g: 0xBB, b: 0x00 },
+    RgbS { r: 0x00, g: 0xDD, b: 0x00 },
     RgbS { r: 0x00, g: 0xFF, b: 0x00 },
-    RgbS { r: 0x00, g: 0xFF, b: 0x7F },
-    RgbS { r: 0x00, g: 0xFF, b: 0xAA },
-    RgbS { r: 0xFF, g: 0x10, b: 0xF0 },
-    RgbS { r: 0x9D, g: 0x00, b: 0xFF },
 ];
 // END
 
