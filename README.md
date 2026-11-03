@@ -2,7 +2,7 @@
 
 ## What it does
 
-On Framework Desktop systems running Linux, the fan controller's speed and RGB settings can become corrupted after reboot. This tool runs at startup and directly writes configured at compilation to the controller 
+On Framework Desktop systems running Linux, the fan controller's speed and RGB settings can become corrupted after reboot. This tool runs at startup and directly writes values configured at compilation to the controller to fix this issue!
 
 ## Configuration
 
