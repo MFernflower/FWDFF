@@ -11,14 +11,14 @@ const ENABLE_LED_WRITE: bool = true; // Set to true to enable LED write, false t
 const ENABLE_RGB_SCRAMBLE: bool = true; // Set to true to scramble the RGB payload periodically
 const RGB_SCRAMBLE_SEC: u64 = 10; // Scramble the payload after this many seconds
 const RGBPAYLOAD: [RgbS; 8] = [
-    RgbS { r: 0x00, g: 0x10, b: 0x00 },
-    RgbS { r: 0x00, g: 0x2A, b: 0x00 },
-    RgbS { r: 0x00, g: 0x50, b: 0x00 },
-    RgbS { r: 0x00, g: 0x78, b: 0x00 },
-    RgbS { r: 0x00, g: 0x99, b: 0x00 },
-    RgbS { r: 0x00, g: 0xBB, b: 0x00 },
-    RgbS { r: 0x00, g: 0xDD, b: 0x00 },
-    RgbS { r: 0x00, g: 0xFF, b: 0x00 },
+    RgbS { r: 0x00, g: 0x80, b: 0x00 }, // Green
+    RgbS { r: 0x00, g: 0xFF, b: 0x00 }, // Lime
+    RgbS { r: 0x34, g: 0xCD, b: 0x32 }, // LimeGreen
+    RgbS { r: 0x22, g: 0x8B, b: 0x22 }, // ForestGreen
+    RgbS { r: 0x00, g: 0x64, b: 0x00 }, // DarkGreen
+    RgbS { r: 0x2E, g: 0x8B, b: 0x57 }, // SeaGreen
+    RgbS { r: 0x3C, g: 0xB3, b: 0x71 }, // MediumSeaGreen
+    RgbS { r: 0x00, g: 0xFF, b: 0x7F }, // SpringGreen
 ];
 // END
 
