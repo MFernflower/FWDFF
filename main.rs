@@ -8,9 +8,9 @@ use std::time::{Duration, Instant};
 // Compile-time configuration variables
 const FAN_SPEED_PERCENT: u32 = 40; // Set fan speed percentage (0-100)
 const ENABLE_LED_WRITE: bool = true; // Set to true to enable LED write, false to disable
-const ENABLE_RGB_SCRAMBLE: bool = false; // Set to true to scramble the RGB payload periodically
+const ENABLE_RGB_SCRAMBLE: bool = true; // Set to true to scramble the RGB payload 
 const RGB_SCRAMBLE_SEC: u64 = 10; // Scramble the payload after this many seconds
-const RGBPAYLOAD: [RgbS; 8] = [
+const RGBPAYLOAD: [RgbS; 8] = [   // Yellow-green color scheme
     RgbS { r: 0x7F, g: 0xFF, b: 0x00 },
     RgbS { r: 0xAD, g: 0xFF, b: 0x00 },
     RgbS { r: 0x9A, g: 0xCD, b: 0x00 },
