@@ -2,7 +2,7 @@
 
 ## What it does
 
-On Framework Desktop systems running Linux, the fan controller's speed and RGB settings can become corrupted after reboot. This tool runs at startup and directly writes values configured at compilation to the controller to fix this issue!
+On [Framework Desktop](https://frame.work/desktop) systems running Linux, the internal fan controller's speed and RGB settings can sometimes become corrupted after reboot. This tool runs at startup and directly writes values configured at compilation to the controller to fix this issue!
 
 ## Configuration
 
@@ -12,7 +12,7 @@ Edit `main.rs` to change:
 - `ENABLE_LED_WRITE` - enable or disable LED writes
 - `ENABLE_RGB_SCRAMBLE` - enable or disable periodic RGB scrambling
 - `RGB_SCRAMBLE_SEC` - scramble interval in seconds
-- `RGBPAYLOAD` - custom RGB values for the fan controller
+- `RGBPAYLOAD` - the array of custom RGB values to write to the fan controller
 
 Note: Any change requires rebuilding the binary and reinstalling the utility!
 
