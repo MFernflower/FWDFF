@@ -11,14 +11,14 @@ const ENABLE_LED_WRITE: bool = true; // Set to true to enable LED write, false t
 const ENABLE_RGB_SCRAMBLE: bool = false; // Set to true to scramble the RGB payload 
 const RGB_SCRAMBLE_SEC: u64 = 10; // Scramble the RGB payload after this many seconds
 const RGBPAYLOAD: [RgbS; 8] = [   // Yellow-green color scheme
-    RgbS { r: 0x7F, g: 0xFF, b: 0x00 },
+    RgbS { r: 0x7F, g: 0xF9, b: 0x00 },
     RgbS { r: 0xAD, g: 0xBA, b: 0x00 },
     RgbS { r: 0x9A, g: 0xDA, b: 0x00 },
     RgbS { r: 0xB0, g: 0xF1, b: 0x00 },
     RgbS { r: 0xA8, g: 0xE1, b: 0x00 },
-    RgbS { r: 0xC6, g: 0xFA, b: 0x00 },
+    RgbS { r: 0xC6, g: 0xF4, b: 0x00 },
     RgbS { r: 0x80, g: 0xC0, b: 0x00 },
-    RgbS { r: 0xDF, g: 0xFE, b: 0x00 },
+    RgbS { r: 0xDF, g: 0xF9, b: 0x00 },
 ];
 // END
 
