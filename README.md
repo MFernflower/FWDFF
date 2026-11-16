@@ -8,7 +8,8 @@ On [Framework Desktop](https://frame.work/desktop) systems running Linux, the in
 
 Edit `main.rs` to change:
 
-- `FAN_SPEED_PERCENT` - fan speed from 0-100
+- `FAN_SPEED_PERCENT` - fixed fan speed from 0-100 (overrides BIOS fan curve)
+- `SET_FIXED_FAN_SPEED` - enable or disable fixed fan speed 
 - `ENABLE_LED_WRITE` - enable or disable LED writes
 - `ENABLE_RGB_SCRAMBLE` - enable or disable periodic RGB scrambling
 - `RGB_SCRAMBLE_SEC` - scramble interval in seconds
