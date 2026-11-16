@@ -6,7 +6,7 @@ use std::thread;
 use std::time::{Duration, Instant};
 
 // Compile-time configuration variables
-const FAN_SPEED_PERCENT: u32 = 42; // Set fan speed percentage (0-100)
+const FAN_SPEED_PERCENT: u32 = 42; // Set fan fixed speed percentage (0-100)
 const SET_FIXED_FAN_SPEED: bool = true; // Set to true to enable fixed fan speed, false to disable
 const ENABLE_LED_WRITE: bool = true; // Set to true to enable LED write, false to disable
 const ENABLE_RGB_SCRAMBLE: bool = false; // Set to true to scramble the RGB payload 
@@ -36,7 +36,7 @@ fn main() -> Result<(), EcError> {
     let ec = CrosEc::new();
 
     if SET_FIXED_FAN_SPEED {
-        ec.send_command(0x0024u16, 0, &FAN_SPEED_PERCENT.to_le_bytes())?;
+        ec.send_command(0x0024u16, 0, &FAN_SPEED_PERCENT.to_le_bytes())?; // override fan curve to a fixed percentage (0-100)
     }
 
     if ENABLE_LED_WRITE {
