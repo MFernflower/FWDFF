@@ -7,6 +7,7 @@ use std::time::{Duration, Instant};
 
 // Compile-time configuration variables
 const FAN_SPEED_PERCENT: u32 = 42; // Set fan speed percentage (0-100)
+const SET_FIXED_FAN_SPEED: bool = true; // Set to true to enable fixed fan speed, false to disable
 const ENABLE_LED_WRITE: bool = true; // Set to true to enable LED write, false to disable
 const ENABLE_RGB_SCRAMBLE: bool = false; // Set to true to scramble the RGB payload 
 const RGB_SCRAMBLE_SEC: u64 = 10; // Scramble the RGB payload after this many seconds
@@ -34,7 +35,9 @@ fn scramble_rgb_payload(payload: &mut [RgbS; 8]) {
 fn main() -> Result<(), EcError> {
     let ec = CrosEc::new();
 
-    ec.send_command(0x0024u16, 0, &FAN_SPEED_PERCENT.to_le_bytes())?;
+    if SET_FIXED_FAN_SPEED {
+        ec.send_command(0x0024u16, 0, &FAN_SPEED_PERCENT.to_le_bytes())?;
+    }
 
     if ENABLE_LED_WRITE {
         let mut payload = RGBPAYLOAD;
